@@ -2,9 +2,9 @@ import GamePiece from "./GamePiece";
 
 class Game {
   constructor() {
-    this.seed = Math.random() * 1000000;
-    console.log(this.seed);
+    this.seed = Math.floor(Math.random() * 1000000);
   }
+  players: any;
   seed: number;
   pieces: GamePiece[] = [];
 }

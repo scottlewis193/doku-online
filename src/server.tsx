@@ -2,6 +2,8 @@ import { Hono } from "hono";
 import App from "./components/App";
 import { ServerWebSocket } from "bun";
 import { generateSessionId } from "./utils";
+import { BACKENDPLAYERS } from "./globals";
+import Player from "./obj/Player";
 
 //Bun web socket
 const server = Bun.serve({
@@ -22,15 +24,27 @@ const server = Bun.serve({
         : new Response("Upgrade Failed", { status: 500 });
     }
 
-    console.log(url);
-
     return new Response("Not Found", { status: 404 });
   },
   websocket: {
     open(ws: ServerWebSocket) {
       const data: any = ws.data;
-
       console.log("client connected");
+
+      //subscribes player to doku channel
+      ws.subscribe("doku");
+
+      //create new player
+      const player = new Player(data.sessionId);
+      BACKENDPLAYERS[data.sessionId] = player;
+
+      //send backEndPlayers to clients
+      server.publish(
+        "doku",
+        JSON.stringify({
+          backEndPlayers: BACKENDPLAYERS,
+        }),
+      );
     },
     message(ws: ServerWebSocket, msg: string) {
       const data: any = ws.data;
@@ -39,7 +53,8 @@ const server = Bun.serve({
       const data: any = ws.data;
 
       ws.close(code, msg);
-      ws.unsubscribe("pm");
+      ws.unsubscribe("doku");
+      delete BACKENDPLAYERS[data.sessionId];
       console.log("client disconnected");
     },
   },

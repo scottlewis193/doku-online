@@ -14,9 +14,7 @@ function Layout(props: { children?: any }) {
         <script type="module" src="/client.ts"></script>
         <title>Doku Online</title>
       </head>
-      <body hx-ext="ws" ws-connect="ws://localhost:3000/ws">
-        {props.children}
-      </body>
+      <body>{props.children}</body>
     </html>
   );
 }
