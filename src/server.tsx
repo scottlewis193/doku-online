@@ -24,9 +24,6 @@ const server = Bun.serve({
 
     console.log(url);
 
-    // if (url.startsWith("/"))
-    //   return new Response(Bun.file("./src/public" + url));
-
     return new Response("Not Found", { status: 404 });
   },
   websocket: {
