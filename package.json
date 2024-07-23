@@ -1,0 +1,16 @@
+{
+  "name": "doku-online-new",
+  "type": "module",
+  "scripts": {
+    "dev": "bunx --bun vite"
+  },
+  "dependencies": {
+    "@hono/vite-dev-server": "^0.13.1",
+    "hono": "^4.5.1",
+    "vite": "^5.3.4"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "bun-html-live-reload": "^0.1.3"
+  }
+}

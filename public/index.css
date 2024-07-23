@@ -1,0 +1,147 @@
+:root {
+    color-scheme: light dark;
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #242424;
+
+    --color-1: #852e1d;
+    --color-2: #4f1e0f;
+    --color-3: #c1814b;
+    --color-4: #f4a460;
+    --color-5: #ffff00;
+    --width: 50px;
+    --height: 50px;
+    --full-width: calc(9 * var(--width));
+    --full-height: calc(9 * var(--height));
+}
+
+* {
+    box-sizing: border-box;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+a {
+    font-weight: 500;
+    color: #ffffff;
+    text-decoration: inherit;
+}
+
+a:hover {
+    color: #535bf2;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    min-width: 320px;
+    min-height: 100vh;
+    background-color: var(--color-3);
+}
+
+.board {
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    width: calc(9 * (var(--width) + 1));
+    height: calc(9 * (var(--height) + 1));
+}
+
+.cell,
+.cell-alt {
+    width: var(--width);
+    height: var(--height);
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+}
+
+.cell {
+    background-color: var(--color-1);
+}
+
+.cell.hovered {
+    background-color: var(--color-5);
+}
+
+.cell.occupied {
+    background-color: var(--color-4);
+}
+
+.cell-alt {
+    background-color: var(--color-2);
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.stats {
+    width: var(--full-width);
+}
+
+.topUI {
+    width: var(--full-width);
+    height: calc(2 * var(--height));
+
+    .stat-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: calc(var(--full-width) / 3);
+        height: 100%;
+
+        #stat-title {
+            color: var(--color-2);
+        }
+
+        #stat-value {
+            border-left: 1px solid black;
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;
+            background-color: var(--color-2);
+            color: var(--color-4);
+            width: 100%;
+            height: var(--height);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+        }
+    }
+
+    .stat-container:last-child #stat-value {
+        border-right: 1px solid black;
+    }
+}
+
+.bottomUI {
+    width: var(--full-width);
+    height: calc(3 * var(--height));
+
+    .stash {
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+
+        .stash-container {
+            width: calc(var(--full-width) / 3);
+            height: calc(2 * var(--height));
+            border-left: 1px solid black;
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;
+        }
+
+        .stash-container:last-child {
+            border-right: 1px solid black;
+        }
+
+    }
