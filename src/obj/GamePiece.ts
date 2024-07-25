@@ -1,4 +1,4 @@
-const pieceCodes = [
+export const PieceCodes = [
   "1",
   // ■
   "11",
@@ -89,11 +89,10 @@ const pieceCodes = [
 ];
 
 class GamePiece {
-  code: number;
-  constructor(code: number) {
-    this.code = code;
+  code: string;
+  constructor(index: number) {
+    this.code = PieceCodes[index];
   }
-  randomize() {}
 }
 
 export default GamePiece;

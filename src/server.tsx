@@ -1,9 +1,10 @@
-import { Hono } from "hono";
+import { Hono, Context } from "hono";
 import App from "./components/App";
 import { ServerWebSocket } from "bun";
 import { generateSessionId } from "./utils";
 import { BACKENDPLAYERS } from "./globals";
 import Player from "./obj/Player";
+import Game from "./components/Game";
 
 //Bun web socket
 const server = Bun.serve({
@@ -38,6 +39,12 @@ const server = Bun.serve({
       const player = new Player(data.sessionId);
       BACKENDPLAYERS[data.sessionId] = player;
 
+      //send id
+      ws.send(JSON.stringify({ sessionId: data.sessionId }));
+
+      //send log
+      ws.send(JSON.stringify({ log: data.sessionId + " connected" }));
+
       //send backEndPlayers to clients
       server.publish(
         "doku",
@@ -63,11 +70,24 @@ const server = Bun.serve({
   },
 });
 
+//gameloop
+// setInterval(() => {
+//   server.publish("doku", JSON.stringify({ backEndPlayers: BACKENDPLAYERS })),
+//     30;
+// });
+
 //HONO
 const app = new Hono();
 
-app.get("/", (c) => {
+app.get("/", (c: Context) => {
   return c.html(<App />);
+});
+
+app.post("/joingame", async (c: Context) => {
+  const body = await c.req.parseBody();
+  const sessionId = Number(body.sessionId);
+  const player: Player = BACKENDPLAYERS[sessionId];
+  return c.html(<Game player={player} />);
 });
 
 export default app;

@@ -26,22 +26,24 @@ async function connectWebSocket(username: string = "") {
 
 function onSocketMessage(event: MessageEvent) {
   const data: any = JSON.parse(event.data);
+
   //if server sends sessionId
   if (data.hasOwnProperty("sessionId")) {
     SESSIONID = data.sessionId;
     FRONTENDPLAYERS[data.sessionId] = { username: data.sessionId };
-    return;
+    const formElement = document.querySelector("form");
+    formElement?.setAttribute("hx-vals", `{"sessionId": ${data.sessionId}}`);
   }
 
   //if server sends backEndPlayers
   if (data.hasOwnProperty("backEndPlayers")) {
-    console.log("got backEndPlayers");
-
     //iterate over backendplayers
     for (const id in data.backEndPlayers) {
       //if player doesn't exist on frontend, add them
       if (!FRONTENDPLAYERS[id]) {
-        FRONTENDPLAYERS[id] = { username: data.backEndPlayers[id] };
+        FRONTENDPLAYERS[id] = {
+          username: data.backEndPlayers[id],
+        };
       }
     }
 
@@ -54,7 +56,9 @@ function onSocketMessage(event: MessageEvent) {
     }
   }
 
-  console.log(FRONTENDPLAYERS);
+  if (data.hasOwnProperty("log")) {
+    console.log(data.log);
+  }
 }
 
 function onSocketOpen(event: Event) {
