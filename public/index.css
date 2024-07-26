@@ -31,8 +31,12 @@ a:hover {
     color: #535bf2;
 }
 
-body {
+body,
+html {
     margin: 0;
+}
+
+body {
     display: flex;
     flex-direction: column;
     place-items: center;
@@ -62,32 +66,30 @@ body {
 
 /* this sets the alternating colors on the board   */
 .board {
-    .board-row:nth-child(n+1):nth-last-child(n+7) {
-        .cell:nth-child(n+4):nth-last-child(n+4) {
+    .board-row:nth-child(n + 1):nth-last-child(n + 7) {
+        .cell:nth-child(n + 4):nth-last-child(n + 4) {
             background-color: var(--color-2);
         }
     }
 
-    .board-row:nth-child(n+7):nth-last-child(n+1) {
-        .cell:nth-child(n+4):nth-last-child(n+4) {
+    .board-row:nth-child(n + 7):nth-last-child(n + 1) {
+        .cell:nth-child(n + 4):nth-last-child(n + 4) {
             background-color: var(--color-2);
         }
     }
 
-    .board-row:nth-child(n+4):nth-last-child(n+4) {
-        .cell:nth-child(n+1):nth-last-child(n+7) {
+    .board-row:nth-child(n + 4):nth-last-child(n + 4) {
+        .cell:nth-child(n + 1):nth-last-child(n + 7) {
             background-color: var(--color-2);
         }
     }
 
-    .board-row:nth-child(n+4):nth-last-child(n+4) {
-        .cell:nth-child(n+7):nth-last-child(n+1) {
+    .board-row:nth-child(n + 4):nth-last-child(n + 4) {
+        .cell:nth-child(n + 7):nth-last-child(n + 1) {
             background-color: var(--color-2);
         }
     }
-
 }
-
 
 .cell.hovered {
     background-color: var(--color-5);
@@ -109,6 +111,15 @@ body {
 .flex-row {
     display: flex;
     flex-direction: row;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.center {
+    align-items: center;
+    justify-content: center;
 }
 
 .stats {
@@ -154,44 +165,48 @@ body {
 .bottomUI {
     width: var(--full-width);
     height: calc(3 * var(--height));
+}
 
-    .stash {
-        width: 100%;
-        height: 100%;
-        align-items: center;
-        justify-content: center;
+.stash {
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+}
 
-        .stash-container {
-            width: calc(var(--full-width) / 3);
-            height: calc(2 * var(--height));
-            border-left: 1px solid black;
-            border-top: 1px solid black;
-            border-bottom: 1px solid black;
-        }
+slot {
+    display: block;
+    width: 100%;
+    height: 66%;
+}
 
-        .stash-container:last-child {
-            border-right: 1px solid black;
-        }
+piece {
+    display: flex;
+    flex-direction: row;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+}
 
-    }
+tile {
+    width: calc(var(--width) / 2);
+    height: calc(var(--height) / 2);
+}
 
-    /* .piece {
-        width: var(--width) / 3;
-        height: var(--height) / 3;
-        background-color: var(--color-2);
-        border-top: 1px solid black;
-        border-left: 1px solid black;
-    } */
+tile:not([empty]) {
+    border: 1px solid black;
+    border-left: 1px solid black;
+    background-color: var(--color-4);
+}
 
-    .piece-tile,
-    .piece-newline,
-    .piece-empty {
-        width: calc(var(--width) / 1.5);
-        height: calc(var(--height) / 1.5);
-    }
+break {
+    flex-basis: 100%;
+    height: 0px;
+    width: 0px;
+    overflow: hidden;
+}
 
-    .piece-tile {
-        background-color: var(--color-4);
-        border-top: 1px solid black;
-        border-left: 1px solid black;
-    }
+.draggable {
+    position: absolute;
+}

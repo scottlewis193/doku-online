@@ -4,6 +4,7 @@ const FRONTENDPLAYERS: any = {};
 const FRONTENDGAME: any = {};
 let SESSIONID: number = 0;
 let socket: WebSocket;
+let mouseOrTouchPressed: boolean = false;
 
 connectWebSocket();
 
@@ -71,4 +72,67 @@ function onSocketClose(event: CloseEvent) {
 
 function onSocketError(event: Event) {
   console.log("socket error");
+}
+
+function joinGame(sessionId: number) {
+  //add event listeners based on if device supports touch or not
+  if ("ontouchstart" in window) {
+    document
+      .querySelector("body")
+      ?.addEventListener("touchstart", onTouchStart);
+    document.querySelector("body")?.addEventListener("touchend", onTouchEnd);
+    document.querySelector("body")?.addEventListener("touchmove", onTouchMove);
+  } else {
+    document.querySelector("body")?.addEventListener("mousedown", onMouseDown);
+    document.querySelector("body")?.addEventListener("mouseup", onMouseUp);
+    document.querySelector("body")?.addEventListener("mousemove", onMouseMove);
+  }
+}
+
+function onTouchStart(event: TouchEvent) {
+  mouseOrTouchPressed = true;
+
+  const touch = event.changedTouches[0];
+  const cell = document.elementFromPoint(touch.clientX, touch.clientY);
+  if (cell) {
+    cell.classList.add("hovered");
+  }
+}
+
+function onTouchEnd(event: TouchEvent) {
+  mouseOrTouchPressed = false;
+  const touch = event.changedTouches[0];
+  const cell = document.elementFromPoint(touch.clientX, touch.clientY);
+  if (cell) {
+    cell.classList.remove("hovered");
+  }
+}
+
+function onTouchMove(event: TouchEvent) {
+  const touch = event.changedTouches[0];
+  if (mouseOrTouchPressed) {
+  }
+
+  const cell = document.elementFromPoint(touch.clientX, touch.clientY);
+  if (cell) {
+    cell.classList.add("hovered");
+  }
+}
+
+//if mouse is clicked
+function onMouseDown(event: MouseEvent) {
+  mouseOrTouchPressed = true;
+  const cell = document.elementFromPoint(event.clientX, event.clientY);
+  if (cell) {
+    cell.classList.add("hovered");
+  }
+}
+
+// if mouse is released
+function onMouseUp(event: MouseEvent) {
+  mouseOrTouchPressed = false;
+  const cell = document.elementFromPoint(event.clientX, event.clientY);
+  if (cell) {
+    cell.classList.remove("hovered");
+  }
 }

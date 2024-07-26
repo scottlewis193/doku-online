@@ -7,9 +7,15 @@ function Stash(props: { pieces: GamePiece[] }) {
 
   return (
     <div className="stash flex-row">
-      <div className="stash-container">{pieceComponents[0]}</div>
-      <div className="stash-container">{pieceComponents[1]}</div>
-      <div className="stash-container">{pieceComponents[2]}</div>
+      <slot>
+        <piece className="draggable">{pieceComponents[0]}</piece>
+      </slot>
+      <slot>
+        <piece>{pieceComponents[1]}</piece>
+      </slot>
+      <slot>
+        <piece>{pieceComponents[2]}</piece>
+      </slot>
     </div>
   );
 }
@@ -20,13 +26,13 @@ function pieceCodeToComponent(pieceCode: string) {
   for (let i = 0; i < pieceCode.length; i++) {
     switch (pieceCode.charAt(i)) {
       case "1":
-        pieceComponent.push(<div className="piece-tile"></div>);
+        pieceComponent.push(<tile></tile>);
         break;
       case "B":
-        pieceComponent.push(<div className="piece-newline"></div>);
+        pieceComponent.push(<break></break>);
         break;
       case "0":
-        pieceComponent.push(<div className="piece-empty"></div>);
+        pieceComponent.push(<tile empty></tile>);
         break;
     }
   }

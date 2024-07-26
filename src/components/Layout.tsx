@@ -12,6 +12,7 @@ function Layout(props: { children?: any }) {
         ></script>
         <script src="https://unpkg.com/htmx-ext-ws@2.0.0/ws.js"></script>
         <script type="module" src="/client.ts"></script>
+        <script type="module" src="/inputHandling.ts"></script>
         <title>Doku Online</title>
       </head>
       <body>{props.children}</body>
