@@ -1,11 +1,11 @@
-import Stash from "./Stash";
+import PieceContainer from "./PieceContainer";
 import GamePiece from "../obj/GamePiece";
 
 function BottomUI(props: { pieces: GamePiece[] }) {
   return (
-    <div className="bottomUI">
-      <Stash pieces={props.pieces} />
-    </div>
+    <bottom>
+      <PieceContainer pieces={props.pieces} />
+    </bottom>
   );
 }
 

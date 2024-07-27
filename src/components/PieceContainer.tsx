@@ -1,12 +1,12 @@
 import GamePiece from "../obj/GamePiece";
-function Stash(props: { pieces: GamePiece[] }) {
+function PieceContainer(props: { pieces: GamePiece[] }) {
   //translate piece code to component
   const pieceComponents = props.pieces.map((piece: GamePiece) => {
     return pieceCodeToComponent(piece.code);
   });
 
   return (
-    <div className="stash flex-row">
+    <piececontainer className="flex-row">
       <slot>
         <piece className="draggable">{pieceComponents[0]}</piece>
       </slot>
@@ -16,7 +16,7 @@ function Stash(props: { pieces: GamePiece[] }) {
       <slot>
         <piece>{pieceComponents[2]}</piece>
       </slot>
-    </div>
+    </piececontainer>
   );
 }
 
@@ -40,4 +40,4 @@ function pieceCodeToComponent(pieceCode: string) {
   return pieceComponent;
 }
 
-export default Stash;
+export default PieceContainer;

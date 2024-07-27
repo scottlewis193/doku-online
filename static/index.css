@@ -36,6 +36,12 @@ html {
     margin: 0;
 }
 
+img {
+    width: calc(3 * var(--height));
+    height: calc(3 * var(--height));
+    border: 1px solid black;
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -45,62 +51,54 @@ body {
     background-color: var(--color-3);
 }
 
-.board {
+board {
     border-right: 1px solid black;
     border-bottom: 1px solid black;
     width: calc(9 * (var(--width) + 1));
     height: calc(9 * (var(--height) + 1));
 }
 
-.cell,
-.cell-alt {
+cell {
     width: var(--width);
     height: var(--height);
     border-top: 1px solid black;
     border-left: 1px solid black;
-}
-
-.cell {
     background-color: var(--color-1);
 }
 
 /* this sets the alternating colors on the board   */
-.board {
-    .board-row:nth-child(n + 1):nth-last-child(n + 7) {
-        .cell:nth-child(n + 4):nth-last-child(n + 4) {
+board {
+    boardrow:nth-child(n + 1):nth-last-child(n + 7) {
+        cell:nth-child(n + 4):nth-last-child(n + 4) {
             background-color: var(--color-2);
         }
     }
 
-    .board-row:nth-child(n + 7):nth-last-child(n + 1) {
-        .cell:nth-child(n + 4):nth-last-child(n + 4) {
+    boardrow:nth-child(n + 7):nth-last-child(n + 1) {
+        cell:nth-child(n + 4):nth-last-child(n + 4) {
             background-color: var(--color-2);
         }
     }
 
-    .board-row:nth-child(n + 4):nth-last-child(n + 4) {
-        .cell:nth-child(n + 1):nth-last-child(n + 7) {
+    boardrow:nth-child(n + 4):nth-last-child(n + 4) {
+        cell:nth-child(n + 1):nth-last-child(n + 7) {
             background-color: var(--color-2);
         }
     }
 
-    .board-row:nth-child(n + 4):nth-last-child(n + 4) {
-        .cell:nth-child(n + 7):nth-last-child(n + 1) {
+    boardrow:nth-child(n + 4):nth-last-child(n + 4) {
+        cell:nth-child(n + 7):nth-last-child(n + 1) {
             background-color: var(--color-2);
         }
     }
 }
 
-.cell.hovered {
+cell.hovered {
     background-color: var(--color-5);
 }
 
-.cell.occupied {
+cell.occupied {
     background-color: var(--color-4);
-}
-
-.cell-alt {
-    background-color: var(--color-2);
 }
 
 .flex-col {
@@ -126,9 +124,13 @@ body {
     width: var(--full-width);
 }
 
-.topUI {
+top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     width: var(--full-width);
-    height: calc(2 * var(--height));
+    height: calc(5 * var(--height));
 
     .stat-container {
         display: flex;
@@ -162,12 +164,13 @@ body {
     }
 }
 
-.bottomUI {
+bottom {
+    display: block;
     width: var(--full-width);
     height: calc(3 * var(--height));
 }
 
-.stash {
+piececontainer {
     width: 100%;
     height: 100%;
     align-items: center;
@@ -192,6 +195,8 @@ piece {
 tile {
     width: calc(var(--width) / 2);
     height: calc(var(--height) / 2);
+    margin-bottom: -1px;
+    margin-right: -1px;
 }
 
 tile:not([empty]) {

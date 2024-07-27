@@ -1,5 +1,5 @@
 function Cell(props: { isOccupied: boolean }) {
-  return <div className={`cell ${props.isOccupied ? "occupied" : ""}`}></div>;
+  return <cell className={`${props.isOccupied ? "occupied" : ""}`}></cell>;
 }
 
 export default Cell;

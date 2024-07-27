@@ -1,6 +1,7 @@
 function TopUI() {
   return (
-    <div className="topUI">
+    <top>
+      <img src="static/rileyartcrop.webp" />
       <div className="stats flex-row">
         <div className="stat-container" id="current-score">
           <div id="stat-title">Score</div>
@@ -15,7 +16,7 @@ function TopUI() {
           <div id="stat-value">0</div>
         </div>
       </div>
-    </div>
+    </top>
   );
 }
 

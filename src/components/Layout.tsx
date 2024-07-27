@@ -1,9 +1,10 @@
+import imgUrl from "../../public/rileyart.png";
 function Layout(props: { children?: any }) {
   return (
     <html lang="en">
       <head>
         <meta charset="UTF-8" />
-        <link yle="text/css" rel="stylesheet" href="/index.css" />
+        <link yle="text/css" rel="stylesheet" href="static/index.css" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <script
           src="https://unpkg.com/htmx.org@2.0.1/dist/htmx.js"
@@ -11,8 +12,8 @@ function Layout(props: { children?: any }) {
           crossorigin="anonymous"
         ></script>
         <script src="https://unpkg.com/htmx-ext-ws@2.0.0/ws.js"></script>
-        <script type="module" src="/client.ts"></script>
-        <script type="module" src="/inputHandling.ts"></script>
+        <script type="module" src="static/client.ts"></script>
+        <script type="module" src="static/inputHandling.ts"></script>
         <title>Doku Online</title>
       </head>
       <body>{props.children}</body>

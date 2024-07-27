@@ -9,13 +9,13 @@ function Board(props: { cells: any }) {
 
   for (let y = 0; y < 9; y++) {
     rows.push(
-      <div className="board-row flex-row">
+      <boardrow className="flex-row">
         {cellComponents.slice(y * 9, y * 9 + 9)}
-      </div>,
+      </boardrow>,
     );
   }
 
-  return <div className="board">{rows}</div>;
+  return <board>{rows}</board>;
 }
 
 export default Board;
