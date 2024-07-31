@@ -11,10 +11,10 @@ function PieceContainer(props: { pieces: GamePiece[] }) {
         <piece className="draggable">{pieceComponents[0]}</piece>
       </slot>
       <slot>
-        <piece>{pieceComponents[1]}</piece>
+        <piece className="draggable">{pieceComponents[1]}</piece>
       </slot>
       <slot>
-        <piece>{pieceComponents[2]}</piece>
+        <piece className="draggable">{pieceComponents[2]}</piece>
       </slot>
     </piececontainer>
   );

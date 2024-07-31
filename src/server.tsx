@@ -7,8 +7,8 @@ import Player from "./obj/Player";
 import Game from "./components/Game";
 
 //Bun web socket
-const server = Bun.serve({
-  port: 3000,
+export const server = Bun.serve({
+  port: 0,
   fetch(req: Request, server: any) {
     const url = new URL(req.url).pathname;
     const filePath = url;

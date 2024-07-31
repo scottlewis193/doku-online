@@ -1,4 +1,5 @@
 import imgUrl from "../../public/rileyart.png";
+import { server } from "../server";
 function Layout(props: { children?: any }) {
   return (
     <html lang="en">
@@ -14,6 +15,7 @@ function Layout(props: { children?: any }) {
         <script src="https://unpkg.com/htmx-ext-ws@2.0.0/ws.js"></script>
         <script type="module" src="static/client.ts"></script>
         <script type="module" src="static/inputHandling.ts"></script>
+        <div id="ws-port">{server.port}</div>
         <title>Doku Online</title>
       </head>
       <body>{props.children}</body>

@@ -2,7 +2,7 @@ function TopUI() {
   return (
     <top>
       <img src="static/rileyartcrop.webp" />
-      <div className="stats flex-row">
+      <div className="stats">
         <div className="stat-container" id="">
           <div>&nbsp;</div>
           <input type="button" class="game-btn" id="exit-button" value="E" />

@@ -1,5 +1,3 @@
-import { BACKENDPLAYERS } from "../src/globals";
-
 const FRONTENDPLAYERS: any = {};
 const FRONTENDGAME: any = {};
 let SESSIONID: number = 0;
@@ -10,7 +8,11 @@ connectWebSocket();
 
 async function connectWebSocket(username: string = "") {
   //websocket listeners
-  socket = new WebSocket("ws://localhost:3000/ws", "echo-protocol");
+  const wsport = document.getElementById("ws-port");
+  socket = new WebSocket(
+    "ws://localhost:" + wsport?.innerText + "/ws",
+    "echo-protocol",
+  );
 
   // message is received
   socket.addEventListener("message", onSocketMessage);
