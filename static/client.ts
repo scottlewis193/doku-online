@@ -87,7 +87,7 @@ function joinGame(sessionId: number) {
   } else {
     document.querySelector("body")?.addEventListener("mousedown", onMouseDown);
     document.querySelector("body")?.addEventListener("mouseup", onMouseUp);
-    document.querySelector("body")?.addEventListener("mousemove", onMouseMove);
+    // document.querySelector("body")?.addEventListener("mousemove", onMouseMove);
   }
 }
 
